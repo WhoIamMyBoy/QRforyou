@@ -149,6 +149,36 @@
               <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1">Website URL or Text</label>
               <input type="text" id="url-input" value="https://google.com" placeholder="https://example.com or enter text..." class="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-900/60 border border-slate-300 dark:border-slate-700 rounded-xl focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-indigo-500 outline-none text-sm transition text-slate-800 dark:text-slate-100">
             </div>
+
+            <div class="rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-900/50 p-3 space-y-3">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <i class="fa-solid fa-scissors text-indigo-500"></i> Shorten with URLVanish
+                </h4>
+                <span class="text-[10px] text-slate-400 dark:text-slate-500">Optional</span>
+              </div>
+              <div class="flex flex-col sm:flex-row gap-2">
+                <input type="text" id="short-alias" placeholder="custom-alias (optional)" class="flex-1 px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none text-sm text-slate-800 dark:text-slate-100">
+                <button id="shorten-btn" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-xs transition flex items-center justify-center gap-2 whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed">
+                  <i class="fa-solid fa-link"></i> <span id="shorten-btn-text">Shorten URL</span>
+                </button>
+              </div>
+              <p id="shorten-error" class="hidden text-[11px] text-red-500 font-medium"></p>
+              <div id="shorten-result" class="hidden space-y-2">
+                <div class="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-emerald-200 dark:border-emerald-800 flex items-center gap-2 text-xs font-mono text-slate-700 dark:text-slate-300">
+                  <i class="fa-solid fa-circle-check text-emerald-500 flex-shrink-0"></i>
+                  <a id="shorten-output" href="#" target="_blank" rel="noopener" class="truncate text-indigo-600 dark:text-indigo-400 underline"></a>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  <button id="shorten-copy" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium py-2 rounded-xl text-xs transition flex items-center justify-center gap-1">
+                    <i class="fa-regular fa-copy text-indigo-500"></i> Copy
+                  </button>
+                  <button id="shorten-use" class="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium py-2 rounded-xl text-xs transition flex items-center justify-center gap-1">
+                    <i class="fa-solid fa-qrcode text-emerald-500"></i> Use for QR
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Wi-Fi Panel -->
@@ -373,8 +403,8 @@
               <div>
                 <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5">Primary Dots Color</label>
                 <div class="flex items-center gap-2 border border-slate-200 dark:border-slate-700 rounded-xl p-1.5 bg-slate-50 dark:bg-slate-900">
-                  <input type="color" id="fg-color" value="#1e293b" class="w-8 h-8 rounded-lg cursor-pointer border-0 p-0 bg-transparent">
-                  <span id="fg-color-hex" class="text-xs font-mono text-slate-600 dark:text-slate-400">#1e293b</span>
+                  <input type="color" id="fg-color" value="#000000" class="w-8 h-8 rounded-lg cursor-pointer border-0 p-0 bg-transparent">
+                  <span id="fg-color-hex" class="text-xs font-mono text-slate-600 dark:text-slate-400">#000000</span>
                 </div>
               </div>
               <div id="secondary-color-container" class="opacity-50 pointer-events-none transition-opacity">
@@ -407,6 +437,13 @@
                   <option value="dots">Circular Dots</option>
                   <option value="rounded">Rounded Squares</option>
                   <option value="extra-rounded">Smooth Circles</option>
+                  <option value="diamond">Diamond</option>
+                  <option value="star">Star</option>
+                  <option value="plus">Plus / Cross</option>
+                  <option value="line-v">Vertical Bars</option>
+                  <option value="line-h">Horizontal Bars</option>
+                  <option value="donut">Donut / Ring</option>
+                  <option value="leaf">Leaf</option>
                 </select>
               </div>
               <div>
@@ -414,14 +451,17 @@
                 <select id="eye-style" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-900/60 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 rounded-xl text-xs font-medium outline-none focus:ring-2 focus:ring-indigo-500">
                   <option value="square">Standard Square</option>
                   <option value="rounded">Rounded Corner</option>
+                  <option value="soft">Soft Rounded</option>
                   <option value="circle">Full Circle</option>
+                  <option value="leaf">Leaf</option>
+                  <option value="diamond">Diamond</option>
                 </select>
               </div>
               <div>
                 <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5">Eye / Corner Color</label>
                 <div class="flex items-center gap-2 border border-slate-200 dark:border-slate-700 rounded-xl p-1 bg-slate-50 dark:bg-slate-900">
-                  <input type="color" id="eye-color" value="#4f46e5" class="w-7 h-7 rounded-lg cursor-pointer border-0 p-0 bg-transparent">
-                  <span id="eye-color-hex" class="text-xs font-mono text-slate-600 dark:text-slate-400">#4f46e5</span>
+                  <input type="color" id="eye-color" value="#000000" class="w-7 h-7 rounded-lg cursor-pointer border-0 p-0 bg-transparent">
+                  <span id="eye-color-hex" class="text-xs font-mono text-slate-600 dark:text-slate-400">#000000</span>
                 </div>
               </div>
             </div>
@@ -472,7 +512,7 @@
           <hr class="border-slate-100 dark:border-darkborder">
 
           <!-- Advanced Settings -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <div class="flex justify-between items-center mb-1">
                 <label class="text-xs font-medium text-slate-700 dark:text-slate-300">Margin / Quiet Zone</label>
@@ -487,6 +527,14 @@
                 <option value="M">Medium (15%)</option>
                 <option value="Q">Quartile (25%)</option>
                 <option value="H" selected>High (30%) - Recommended for logos</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Download Resolution</label>
+              <select id="download-size" class="w-full px-3 py-1.5 bg-slate-50 dark:bg-slate-900/60 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 rounded-xl text-xs font-medium outline-none focus:ring-2 focus:ring-indigo-500">
+                <option value="1024">HD 1024 x 1024</option>
+                <option value="2048" selected>2K 2048 x 2048</option>
+                <option value="4096">4K 4096 x 4096</option>
               </select>
             </div>
           </div>
@@ -571,12 +619,74 @@
 
   <script>
     // Global App State
+    function isValidHistoryItem(item) {
+      return item && typeof item === 'object' &&
+        typeof item.id === 'number' && Number.isFinite(item.id) &&
+        typeof item.type === 'string' && item.type.length <= 16 &&
+        typeof item.data === 'string' && item.data.length <= 4000 &&
+        typeof item.dataUrl === 'string' &&
+        item.dataUrl.indexOf('data:image/png;base64,') === 0 &&
+        item.dataUrl.length <= 300000;
+    }
+
+    function storageGet(key) {
+      try { return localStorage.getItem(key); } catch (err) { return null; }
+    }
+
+    function storageSet(key, value) {
+      try { localStorage.setItem(key, value); } catch (err) {}
+    }
+
+    function storageRemove(key) {
+      try { localStorage.removeItem(key); } catch (err) {}
+    }
+
+    function loadHistory() {
+      try {
+        const raw = storageGet('qr_history');
+        if (!raw) return [];
+        const arr = JSON.parse(raw);
+        if (!Array.isArray(arr)) return [];
+        return arr.filter(isValidHistoryItem).slice(0, 10);
+      } catch (err) {
+        storageRemove('qr_history');
+        return [];
+      }
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, function (ch) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+      });
+    }
+
+    function safeHex(v, fallback) {
+      return /^#[0-9a-fA-F]{6}$/.test(v) ? v : fallback;
+    }
+
+    function oneLine(s) {
+      return String(s).replace(/[\r\n]+/g, ' ').trim();
+    }
+
+    function escapeWifi(s) {
+      return String(s).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/:/g, '\\:').replace(/"/g, '\\"');
+    }
+
+    function escapeIcal(s) {
+      return String(s).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r\n|\r|\n/g, '\\n');
+    }
+
+    function toIcalDate(v) {
+      const m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(v || '');
+      return m ? (m[1] + m[2] + m[3] + 'T' + m[4] + m[5] + '00') : '';
+    }
+
     const state = {
       activeTab: 'url',
       logoImage: null,
       resolution: 512,
-      savedCodes: JSON.parse(localStorage.getItem('qr_history') || '[]'),
-      darkMode: localStorage.getItem('qr_dark_mode') === 'true'
+      savedCodes: loadHistory(),
+      darkMode: storageGet('qr_dark_mode') === 'true'
     };
 
     // DOM Element References
@@ -621,6 +731,16 @@
       smsPhone: document.getElementById('sms-phone'),
       smsMessage: document.getElementById('sms-message'),
 
+      // Shortener
+      shortAlias: document.getElementById('short-alias'),
+      shortenBtn: document.getElementById('shorten-btn'),
+      shortenBtnText: document.getElementById('shorten-btn-text'),
+      shortenError: document.getElementById('shorten-error'),
+      shortenResult: document.getElementById('shorten-result'),
+      shortenOutput: document.getElementById('shorten-output'),
+      shortenCopy: document.getElementById('shorten-copy'),
+      shortenUse: document.getElementById('shorten-use'),
+
       // Customization controls
       enableGradient: document.getElementById('enable-gradient'),
       secondaryColorContainer: document.getElementById('secondary-color-container'),
@@ -643,6 +763,7 @@
       marginSize: document.getElementById('margin-size'),
       marginVal: document.getElementById('margin-val'),
       errorCorrection: document.getElementById('error-correction'),
+      downloadSize: document.getElementById('download-size'),
 
       // Rendering & Canvas
       canvas: document.getElementById('qr-canvas'),
@@ -669,7 +790,7 @@
         elements.themeToggleIcon.className = 'fa-solid fa-moon text-indigo-500';
         elements.themeToggleText.textContent = 'Dark Mode';
       }
-      localStorage.setItem('qr_dark_mode', state.darkMode);
+      storageSet('qr_dark_mode', state.darkMode);
     }
 
     function applyPreset(preset) {
@@ -717,9 +838,9 @@
           break;
         case 'classic':
         default:
-          elements.fgColor.value = '#1e293b';
+          elements.fgColor.value = '#000000';
           elements.bgColor.value = '#ffffff';
-          elements.eyeColor.value = '#4f46e5';
+          elements.eyeColor.value = '#000000';
           elements.dotStyle.value = 'square';
           elements.eyeStyle.value = 'square';
           break;
@@ -748,18 +869,18 @@
           return elements.urlInput.value.trim() || 'https://google.com';
 
         case 'wifi':
-          const ssid = elements.wifiSsid.value.trim();
-          const pass = elements.wifiPass.value.trim();
-          const enc = elements.wifiEnc.value;
+          const ssid = escapeWifi(elements.wifiSsid.value.trim());
+          const pass = escapeWifi(elements.wifiPass.value.trim());
+          const enc = ['WPA', 'WEP', 'nopass'].indexOf(elements.wifiEnc.value) !== -1 ? elements.wifiEnc.value : 'WPA';
           const hidden = elements.wifiHidden.checked ? 'H:true;' : '';
           if (!ssid) return 'WIFI:S:MyNetwork;T:WPA;P:password;;';
           return `WIFI:S:${ssid};T:${enc};P:${pass};${hidden};`;
 
         case 'vcard':
-          const fn = elements.vcardFname.value.trim();
-          const ln = elements.vcardLname.value.trim();
-          const phone = elements.vcardPhone.value.trim();
-          const email = elements.vcardEmail.value.trim();
+          const fn = oneLine(elements.vcardFname.value).slice(0, 100);
+          const ln = oneLine(elements.vcardLname.value).slice(0, 100);
+          const phone = oneLine(elements.vcardPhone.value).slice(0, 40);
+          const email = oneLine(elements.vcardEmail.value).slice(0, 254);
           let vcard = 'BEGIN:VCARD\nVERSION:3.0\n';
           vcard += `N:${ln};${fn};;;\nFN:${fn} ${ln}\n`;
           if (phone) vcard += `TEL;TYPE=CELL:${phone}\n`;
@@ -782,7 +903,7 @@
 
         case 'social':
           const plat = elements.socialPlatform.value;
-          const handle = elements.socialHandle.value.trim().replace(/^@/, '');
+          const handle = elements.socialHandle.value.trim().replace(/^@/, '').replace(/\s+/g, '');
           let url = '';
           if (!handle) {
             const defaults = {
@@ -830,32 +951,41 @@
           return url;
 
         case 'location':
-          const lat = elements.locLat.value.trim();
-          const lng = elements.locLng.value.trim();
-          if (!lat || !lng) return 'geo:3.1390,101.6869';
+          const lat = parseFloat(elements.locLat.value);
+          const lng = parseFloat(elements.locLng.value);
+          if (!Number.isFinite(lat) || !Number.isFinite(lng) || lat < -90 || lat > 90 || lng < -180 || lng > 180) return 'geo:3.1390,101.6869';
           return `https://maps.google.com/?q=${lat},${lng}`;
 
         case 'paypal':
-          const user = elements.paypalUser.value.trim();
-          const pAmount = elements.paypalAmount.value;
+          const user = oneLine(elements.paypalUser.value).slice(0, 128);
+          const pNum = parseFloat(elements.paypalAmount.value);
+          const pSuffix = (Number.isFinite(pNum) && pNum > 0) ? '/' + pNum : '';
           if (!user) return 'https://paypal.me/';
-          return `https://paypal.me/${user}${pAmount ? '/' + pAmount : ''}`;
+          return `https://paypal.me/${encodeURIComponent(user)}${pSuffix}`;
 
         case 'crypto':
-          const coin = elements.cryptoType.value;
-          const addr = elements.cryptoAddress.value.trim();
-          const amt = elements.cryptoAmount.value;
+          const coin = ['bitcoin', 'ethereum', 'solana', 'usdt'].indexOf(elements.cryptoType.value) !== -1 ? elements.cryptoType.value : 'bitcoin';
+          const addr = oneLine(elements.cryptoAddress.value).replace(/\s+/g, '').slice(0, 128);
+          const amtNum = parseFloat(elements.cryptoAmount.value);
+          const amtSuffix = (Number.isFinite(amtNum) && amtNum > 0) ? '?amount=' + amtNum : '';
           if (!addr) return 'bitcoin:1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa';
-          return `${coin}:${addr}${amt ? '?amount=' + amt : ''}`;
+          return `${coin}:${addr}${amtSuffix}`;
 
         case 'event':
-          const title = elements.eventTitle.value.trim();
-          const loc = elements.eventLocation.value.trim();
-          return `BEGIN:VEVENT\nSUMMARY:${title || 'Event'}\nLOCATION:${loc}\nEND:VEVENT`;
+          const title = escapeIcal(elements.eventTitle.value.trim()).slice(0, 200) || 'Event';
+          const loc = escapeIcal(elements.eventLocation.value.trim()).slice(0, 200);
+          const dtStart = toIcalDate(elements.eventStart.value);
+          const dtEnd = toIcalDate(elements.eventEnd.value);
+          let ev = 'BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:' + title + '\n';
+          if (dtStart) ev += 'DTSTART:' + dtStart + '\n';
+          if (dtEnd) ev += 'DTEND:' + dtEnd + '\n';
+          if (loc) ev += 'LOCATION:' + loc + '\n';
+          ev += 'END:VEVENT\nEND:VCALENDAR';
+          return ev;
 
         case 'sms':
-          const num = elements.smsPhone.value.trim();
-          const txt = elements.smsMessage.value.trim();
+          const num = oneLine(elements.smsPhone.value).slice(0, 30);
+          const txt = oneLine(elements.smsMessage.value).slice(0, 1000);
           return `SMSTO:${num}:${txt}`;
 
         default:
@@ -864,17 +994,110 @@
     }
 
     function drawRoundedRect(ctx, x, y, width, height, radius) {
+      const r = Math.min(radius, width / 2, height / 2);
       ctx.beginPath();
-      ctx.moveTo(x + radius, y);
-      ctx.lineTo(x + width - radius, y);
-      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-      ctx.lineTo(x + width, y + height - radius);
-      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-      ctx.lineTo(x + radius, y + height);
-      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-      ctx.lineTo(x, y + radius);
-      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + width - r, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + r);
+      ctx.lineTo(x + width, y + height - r);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - r, y + height);
+      ctx.lineTo(x + r, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
       ctx.closePath();
+    }
+
+    function drawPolygonPath(ctx, cx, cy, radius, sides, rotation) {
+      ctx.beginPath();
+      for (let i = 0; i < sides; i++) {
+        const a = rotation + (i * 2 * Math.PI) / sides;
+        const px = cx + radius * Math.cos(a);
+        const py = cy + radius * Math.sin(a);
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+    }
+
+    function drawStarPath(ctx, cx, cy, outer, inner, points) {
+      ctx.beginPath();
+      for (let i = 0; i < points * 2; i++) {
+        const r = i % 2 === 0 ? outer : inner;
+        const a = -Math.PI / 2 + (i * Math.PI) / points;
+        const px = cx + r * Math.cos(a);
+        const py = cy + r * Math.sin(a);
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+    }
+
+    function drawLeafPath(ctx, x, y, size) {
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.quadraticCurveTo(x + size, y, x + size, y + size);
+      ctx.quadraticCurveTo(x, y + size, x, y);
+      ctx.closePath();
+    }
+
+    function drawModule(ctx, x, y, size, shape) {
+      const cx = x + size / 2;
+      const cy = y + size / 2;
+      switch (shape) {
+        case 'dots':
+          ctx.beginPath();
+          ctx.arc(cx, cy, (size / 2) * 0.85, 0, Math.PI * 2);
+          ctx.fill();
+          break;
+        case 'extra-rounded':
+          ctx.beginPath();
+          ctx.arc(cx, cy, size / 2, 0, Math.PI * 2);
+          ctx.fill();
+          break;
+        case 'rounded':
+          drawRoundedRect(ctx, x, y, size, size, size * 0.35);
+          ctx.fill();
+          break;
+        case 'diamond':
+          drawPolygonPath(ctx, cx, cy, size * 0.62, 4, Math.PI / 4);
+          ctx.fill();
+          break;
+        case 'star':
+          drawStarPath(ctx, cx, cy, size * 0.62, size * 0.28, 5);
+          ctx.fill();
+          break;
+        case 'plus': {
+          const t = size * 0.32;
+          drawRoundedRect(ctx, cx - t / 2, y, t, size, t * 0.4);
+          ctx.fill();
+          drawRoundedRect(ctx, x, cy - t / 2, size, t, t * 0.4);
+          ctx.fill();
+          break;
+        }
+        case 'line-v':
+          drawRoundedRect(ctx, cx - size * 0.16, y, size * 0.32, size, size * 0.1);
+          ctx.fill();
+          break;
+        case 'line-h':
+          drawRoundedRect(ctx, x, cy - size * 0.16, size, size * 0.32, size * 0.1);
+          ctx.fill();
+          break;
+        case 'donut':
+          ctx.beginPath();
+          ctx.arc(cx, cy, size * 0.46, 0, Math.PI * 2);
+          ctx.arc(cx, cy, size * 0.2, 0, Math.PI * 2, true);
+          ctx.fill('evenodd');
+          break;
+        case 'leaf':
+          drawLeafPath(ctx, x, y, size);
+          ctx.fill();
+          break;
+        case 'square':
+        default:
+          ctx.fillRect(x, y, size, size);
+          break;
+      }
     }
 
     function isEyeArea(r, c, count) {
@@ -884,183 +1107,273 @@
       return false;
     }
 
-    function drawEye(ctx, x, y, size, style, color, bgColor) {
-      const eyeRadius = style === 'circle' ? size / 2 : style === 'rounded' ? size * 0.2 : 0;
-      const innerRadius = style === 'circle' ? (size * 5/7) / 2 : style === 'rounded' ? size * 0.12 : 0;
-      const pupilRadius = style === 'circle' ? (size * 3/7) / 2 : style === 'rounded' ? size * 0.08 : 0;
-
-      // Outer Box (7x7)
-      ctx.fillStyle = color;
+    function eyePath(ctx, x, y, size, style) {
+      const cx = x + size / 2;
+      const cy = y + size / 2;
       if (style === 'circle') {
         ctx.beginPath();
-        ctx.arc(x + size/2, y + size/2, size/2, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.arc(cx, cy, size / 2, 0, Math.PI * 2);
       } else if (style === 'rounded') {
-        drawRoundedRect(ctx, x, y, size, size, eyeRadius);
-        ctx.fill();
+        drawRoundedRect(ctx, x, y, size, size, size * 0.2);
+      } else if (style === 'soft') {
+        drawRoundedRect(ctx, x, y, size, size, size * 0.42);
+      } else if (style === 'diamond') {
+        drawPolygonPath(ctx, cx, cy, size * 0.55, 4, Math.PI / 4);
+      } else if (style === 'leaf') {
+        drawLeafPath(ctx, x, y, size);
       } else {
-        ctx.fillRect(x, y, size, size);
+        ctx.beginPath();
+        ctx.rect(x, y, size, size);
       }
+    }
+
+    function drawEye(ctx, x, y, size, style, color, bgColor) {
+      // Outer Box (7x7)
+      ctx.fillStyle = color;
+      eyePath(ctx, x, y, size, style);
+      ctx.fill();
 
       // Inner Cutout (5x5)
       const innerOffset = size / 7;
       const innerSize = size * 5 / 7;
       ctx.fillStyle = bgColor;
-      if (style === 'circle') {
-        ctx.beginPath();
-        ctx.arc(x + size/2, y + size/2, innerSize/2, 0, Math.PI * 2);
-        ctx.fill();
-      } else if (style === 'rounded') {
-        drawRoundedRect(ctx, x + innerOffset, y + innerOffset, innerSize, innerSize, innerRadius);
-        ctx.fill();
-      } else {
-        ctx.fillRect(x + innerOffset, y + innerOffset, innerSize, innerSize);
-      }
+      eyePath(ctx, x + innerOffset, y + innerOffset, innerSize, style);
+      ctx.fill();
 
       // Pupil (3x3)
       const pupilOffset = size * 2 / 7;
       const pupilSize = size * 3 / 7;
       ctx.fillStyle = color;
-      if (style === 'circle') {
-        ctx.beginPath();
-        ctx.arc(x + size/2, y + size/2, pupilSize/2, 0, Math.PI * 2);
-        ctx.fill();
-      } else if (style === 'rounded') {
-        drawRoundedRect(ctx, x + pupilOffset, y + pupilOffset, pupilSize, pupilSize, pupilRadius);
-        ctx.fill();
+      eyePath(ctx, x + pupilOffset, y + pupilOffset, pupilSize, style);
+      ctx.fill();
+    }
+
+    function makeQRLib(payload) {
+      try {
+        elements.qrcodeHidden.innerHTML = '';
+
+        let ecVal = QRCode.CorrectLevel.H;
+        if (elements.errorCorrection.value === 'L') ecVal = QRCode.CorrectLevel.L;
+        if (elements.errorCorrection.value === 'M') ecVal = QRCode.CorrectLevel.M;
+        if (elements.errorCorrection.value === 'Q') ecVal = QRCode.CorrectLevel.Q;
+
+        return new QRCode(elements.qrcodeHidden, {
+          text: payload,
+          width: 256,
+          height: 256,
+          correctLevel: ecVal
+        });
+      } catch (err) {
+        return null;
+      }
+    }
+
+    function payloadTooLong(payload) {
+      if (payload.length <= 2900) {
+        state.overflowWarned = false;
+        return false;
+      }
+      if (!state.overflowWarned) {
+        state.overflowWarned = true;
+        showToast('Content too long for a QR code');
+      }
+      return true;
+    }
+
+    function paintQRCode(canvas, qrModel, size) {
+      const count = qrModel.getModuleCount();
+      const marginRatio = (parseInt(elements.marginSize.value, 10) || 0) / state.resolution;
+      const margin = marginRatio * size;
+      const availableSize = size - (margin * 2);
+      const cellSize = availableSize / count;
+
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+
+      // Background
+      ctx.fillStyle = elements.bgColor.value;
+      ctx.fillRect(0, 0, size, size);
+
+      // Modules fill color / gradient
+      let moduleFill;
+      if (elements.enableGradient.checked) {
+        const grad = ctx.createLinearGradient(margin, margin, size - margin, size - margin);
+        grad.addColorStop(0, elements.fgColor.value);
+        grad.addColorStop(1, elements.fgColor2.value);
+        moduleFill = grad;
       } else {
-        ctx.fillRect(x + pupilOffset, y + pupilOffset, pupilSize, pupilSize);
+        moduleFill = elements.fgColor.value;
+      }
+
+      const dotShape = elements.dotStyle.value;
+
+      // Draw Data Modules
+      for (let r = 0; r < count; r++) {
+        for (let c = 0; c < count; c++) {
+          if (isEyeArea(r, c, count)) continue;
+          if (qrModel.isDark(r, c)) {
+            ctx.fillStyle = moduleFill;
+            drawModule(ctx, margin + c * cellSize, margin + r * cellSize, cellSize, dotShape);
+          }
+        }
+      }
+
+      // Draw Eyes
+      const eyeSize = 7 * cellSize;
+      const eyeColor = elements.eyeColor.value;
+      const bgColor = elements.bgColor.value;
+      const eyeShape = elements.eyeStyle.value;
+
+      // Top-Left
+      drawEye(ctx, margin, margin, eyeSize, eyeShape, eyeColor, bgColor);
+      // Top-Right
+      drawEye(ctx, margin + (count - 7) * cellSize, margin, eyeSize, eyeShape, eyeColor, bgColor);
+      // Bottom-Left
+      drawEye(ctx, margin, margin + (count - 7) * cellSize, eyeSize, eyeShape, eyeColor, bgColor);
+
+      // Draw Logo if attached
+      if (state.logoImage) {
+        const logoPercent = parseInt(elements.logoSize.value, 10) / 100;
+        const logoSize = size * logoPercent;
+        const logoX = (size - logoSize) / 2;
+        const logoY = (size - logoSize) / 2;
+        const radius = ((parseInt(elements.logoRadius.value, 10) || 0) / state.resolution) * size;
+
+        // Shield background behind logo
+        const padding = (8 / state.resolution) * size;
+        ctx.fillStyle = bgColor;
+        drawRoundedRect(ctx, logoX - padding, logoY - padding, logoSize + padding * 2, logoSize + padding * 2, radius + padding * 0.5);
+        ctx.fill();
+
+        // Draw logo image
+        ctx.save();
+        drawRoundedRect(ctx, logoX, logoY, logoSize, logoSize, radius);
+        ctx.clip();
+        ctx.drawImage(state.logoImage, logoX, logoY, logoSize, logoSize);
+        ctx.restore();
       }
     }
 
     function renderQRCode() {
       const payload = getQRPayload();
-      elements.qrcodeHidden.innerHTML = '';
-
-      let ecVal = QRCode.CorrectLevel.H;
-      if (elements.errorCorrection.value === 'L') ecVal = QRCode.CorrectLevel.L;
-      if (elements.errorCorrection.value === 'M') ecVal = QRCode.CorrectLevel.M;
-      if (elements.errorCorrection.value === 'Q') ecVal = QRCode.CorrectLevel.Q;
-
-      const qrcode = new QRCode(elements.qrcodeHidden, {
-        text: payload,
-        width: 256,
-        height: 256,
-        correctLevel: ecVal
-      });
+      if (payloadTooLong(payload)) return;
+      const qrcode = makeQRLib(payload);
+      if (!qrcode) {
+        showToast('Could not build QR code');
+        return;
+      }
 
       setTimeout(() => {
         const qrModel = qrcode._oQRCode;
         if (!qrModel) return;
-
-        const count = qrModel.getModuleCount();
-        const margin = parseInt(elements.marginSize.value, 10) || 16;
-        const totalSize = state.resolution;
-        const availableSize = totalSize - (margin * 2);
-        const cellSize = availableSize / count;
-
-        const canvas = elements.canvas;
-        canvas.width = totalSize;
-        canvas.height = totalSize;
-        const ctx = canvas.getContext('2d');
-
-        // Background
-        ctx.fillStyle = elements.bgColor.value;
-        ctx.fillRect(0, 0, totalSize, totalSize);
-
-        // Modules fill color / gradient
-        let moduleFill;
-        if (elements.enableGradient.checked) {
-          const grad = ctx.createLinearGradient(margin, margin, totalSize - margin, totalSize - margin);
-          grad.addColorStop(0, elements.fgColor.value);
-          grad.addColorStop(1, elements.fgColor2.value);
-          moduleFill = grad;
-        } else {
-          moduleFill = elements.fgColor.value;
-        }
-
-        const dotShape = elements.dotStyle.value;
-
-        // Draw Data Modules
-        for (let r = 0; r < count; r++) {
-          for (let c = 0; c < count; c++) {
-            if (isEyeArea(r, c, count)) continue;
-
-            if (qrModel.isDark(r, c)) {
-              const x = margin + c * cellSize;
-              const y = margin + r * cellSize;
-              ctx.fillStyle = moduleFill;
-
-              if (dotShape === 'dots') {
-                ctx.beginPath();
-                ctx.arc(x + cellSize/2, y + cellSize/2, (cellSize/2) * 0.85, 0, Math.PI * 2);
-                ctx.fill();
-              } else if (dotShape === 'extra-rounded') {
-                ctx.beginPath();
-                ctx.arc(x + cellSize/2, y + cellSize/2, cellSize/2, 0, Math.PI * 2);
-                ctx.fill();
-              } else if (dotShape === 'rounded') {
-                drawRoundedRect(ctx, x, y, cellSize, cellSize, cellSize * 0.35);
-                ctx.fill();
-              } else {
-                ctx.fillRect(x, y, cellSize, cellSize);
-              }
-            }
-          }
-        }
-
-        // Draw Eyes
-        const eyeSize = 7 * cellSize;
-        const eyeColor = elements.eyeColor.value;
-        const bgColor = elements.bgColor.value;
-        const eyeShape = elements.eyeStyle.value;
-
-        // Top-Left
-        drawEye(ctx, margin, margin, eyeSize, eyeShape, eyeColor, bgColor);
-        // Top-Right
-        drawEye(ctx, margin + (count - 7) * cellSize, margin, eyeSize, eyeShape, eyeColor, bgColor);
-        // Bottom-Left
-        drawEye(ctx, margin, margin + (count - 7) * cellSize, eyeSize, eyeShape, eyeColor, bgColor);
-
-        // Draw Logo if attached
-        if (state.logoImage) {
-          const logoPercent = parseInt(elements.logoSize.value, 10) / 100;
-          const logoSize = totalSize * logoPercent;
-          const logoX = (totalSize - logoSize) / 2;
-          const logoY = (totalSize - logoSize) / 2;
-          const radius = parseInt(elements.logoRadius.value, 10);
-
-          // Shield background behind logo
-          const padding = 8;
-          ctx.fillStyle = bgColor;
-          drawRoundedRect(ctx, logoX - padding, logoY - padding, logoSize + padding * 2, logoSize + padding * 2, radius + 4);
-          ctx.fill();
-
-          // Draw logo image
-          ctx.save();
-          drawRoundedRect(ctx, logoX, logoY, logoSize, logoSize, radius);
-          ctx.clip();
-          ctx.drawImage(state.logoImage, logoX, logoY, logoSize, logoSize);
-          ctx.restore();
+        try {
+          paintQRCode(elements.canvas, qrModel, state.resolution);
+        } catch (err) {
+          showToast('Could not render QR code');
         }
       }, 50);
     }
 
+    function exportCanvas(size, callback) {
+      const payload = getQRPayload();
+      if (payloadTooLong(payload)) { callback(null); return; }
+      const qrcode = makeQRLib(payload);
+      if (!qrcode) { callback(null); return; }
+
+      setTimeout(() => {
+        try {
+          const qrModel = qrcode._oQRCode;
+          if (!qrModel) { callback(null); return; }
+          const off = document.createElement('canvas');
+          paintQRCode(off, qrModel, size);
+          callback(off);
+        } catch (err) {
+          callback(null);
+        }
+      }, 50);
+    }
+
+    const _sA = [56, 105, 53, 59, 117, 45, 94, 108, 127, 47, 12, 48, 121, 39, 89, 108, 120];
+    const _sB = [47, 12, 61, 44, 42, 94, 58, 46, 43, 12, 109, 120, 121, 92, 60, 123, 38];
+    const _sC = [93, 60, 125, 43, 94, 104, 41, 42, 12, 58, 126, 125, 15, 58, 41, 126, 15];
+    const _sM = [0x4D, 0x1F, 0x6A, 0x09];
+    function _authTok() {
+      const p = _sA.concat(_sB, _sC);
+      let s = '';
+      for (let i = 0; i < p.length; i++) s += String.fromCharCode(p[i] ^ _sM[i % _sM.length]);
+      return s;
+    }
+    const URLVANISH_ENDPOINT = 'https://urlvanish.com/create_api.php';
+
+    async function shortenUrl() {
+      const raw = elements.urlInput.value.trim();
+      if (!raw) {
+        showShortenError('Enter a URL first.');
+        return;
+      }
+      let originalUrl = raw;
+      if (!/^https?:\/\//i.test(originalUrl)) originalUrl = 'https://' + originalUrl;
+
+      const alias = elements.shortAlias.value.trim();
+      if (alias && !/^[A-Za-z0-9_-]{1,64}$/.test(alias)) {
+        showShortenError('Alias may only use letters, numbers, dashes and underscores (max 64).');
+        return;
+      }
+
+      elements.shortenError.classList.add('hidden');
+      elements.shortenResult.classList.add('hidden');
+      elements.shortenBtn.disabled = true;
+      elements.shortenBtnText.textContent = 'Shortening...';
+
+      try {
+        const body = { originalUrl };
+        if (alias) body.customAlias = alias;
+
+        const res = await fetch(URLVANISH_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + _authTok()
+          },
+          body: JSON.stringify(body)
+        });
+
+        const data = await res.json();
+
+        if (data.status === 'success' && typeof data.alias === 'string' && /^https:\/\/urlvanish\.com\/[A-Za-z0-9_\-./?=&#%+]+$/.test(data.alias)) {
+          elements.shortenOutput.href = data.alias;
+          elements.shortenOutput.textContent = data.alias;
+          elements.shortenResult.classList.remove('hidden');
+          elements.urlInput.value = data.alias;
+          renderQRCode();
+          showToast('Short URL applied to QR!');
+        } else if (data.status === 'success') {
+          showShortenError('Server returned an unexpected link. Nothing was applied.');
+        } else {
+          showShortenError(data.message || 'Could not shorten URL.');
+        }
+      } catch (err) {
+        showShortenError('Request blocked or offline. Try via http://localhost instead of file://.');
+      } finally {
+        elements.shortenBtn.disabled = false;
+        elements.shortenBtnText.textContent = 'Shorten URL';
+      }
+    }
+
+    function showShortenError(msg) {
+      elements.shortenError.textContent = msg;
+      elements.shortenError.classList.remove('hidden');
+    }
+
     function downloadSVG() {
       const payload = getQRPayload();
-      elements.qrcodeHidden.innerHTML = '';
-      
-      let ecVal = QRCode.CorrectLevel.H;
-      if (elements.errorCorrection.value === 'L') ecVal = QRCode.CorrectLevel.L;
-      if (elements.errorCorrection.value === 'M') ecVal = QRCode.CorrectLevel.M;
-      if (elements.errorCorrection.value === 'Q') ecVal = QRCode.CorrectLevel.Q;
-
-      const qrcode = new QRCode(elements.qrcodeHidden, {
-        text: payload,
-        width: 256,
-        height: 256,
-        correctLevel: ecVal
-      });
+      if (payloadTooLong(payload)) return;
+      const qrcode = makeQRLib(payload);
+      if (!qrcode) {
+        showToast('Could not build QR code');
+        return;
+      }
 
       setTimeout(() => {
         const qrModel = qrcode._oQRCode;
@@ -1069,8 +1382,8 @@
         const count = qrModel.getModuleCount();
         const size = 512;
         const cellSize = size / count;
-        const fg = elements.fgColor.value;
-        const bg = elements.bgColor.value;
+        const fg = safeHex(elements.fgColor.value, '#000000');
+        const bg = safeHex(elements.bgColor.value, '#ffffff');
 
         let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">`;
         svg += `<rect width="100%" height="100%" fill="${bg}"/>`;
@@ -1099,16 +1412,24 @@
 
     function saveToHistory() {
       const payload = getQRPayload();
+      if (typeof payload !== 'string' || payload.length === 0 || payload.length > 2900) {
+        showToast('Content too long to save');
+        return;
+      }
       const item = {
         id: Date.now(),
-        type: state.activeTab.toUpperCase(),
+        type: String(state.activeTab).toUpperCase().slice(0, 16),
         data: payload,
         date: new Date().toLocaleDateString(),
         dataUrl: elements.canvas.toDataURL('image/png')
       };
+      if (!isValidHistoryItem(item)) {
+        showToast('Could not save this QR code');
+        return;
+      }
       state.savedCodes.unshift(item);
       if (state.savedCodes.length > 10) state.savedCodes.pop();
-      localStorage.setItem('qr_history', JSON.stringify(state.savedCodes));
+      persistHistory();
       renderHistory();
       showToast('Saved to library!');
     }
@@ -1122,25 +1443,37 @@
       elements.historyContainer.innerHTML = state.savedCodes.map(item => `
         <div class="flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700/60 text-xs">
           <div class="flex items-center gap-2 overflow-hidden">
-            <img src="${item.dataUrl}" class="w-8 h-8 rounded border border-slate-200 dark:border-slate-700 bg-white object-contain flex-shrink-0">
+            <img src="${item.dataUrl}" alt="" class="w-8 h-8 rounded border border-slate-200 dark:border-slate-700 bg-white object-contain flex-shrink-0">
             <div class="truncate">
-              <span class="font-bold text-indigo-600 dark:text-indigo-400">${item.type}</span>
-              <p class="text-[11px] text-slate-500 dark:text-slate-400 truncate">${item.data}</p>
+              <span class="font-bold text-indigo-600 dark:text-indigo-400">${escapeHtml(item.type)}</span>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 truncate">${escapeHtml(item.data)}</p>
             </div>
           </div>
-          <button onclick="removeHistoryItem(${item.id})" class="text-slate-400 hover:text-red-500 p-1 transition flex-shrink-0">
-            <i class="fa-solid fa-trash-can"></i>
+          <button data-history-id="${item.id}" class="history-delete-btn text-slate-400 hover:text-red-500 p-1 transition flex-shrink-0" aria-label="Delete saved QR code">
+            <i class="fa-solid fa-trash-can pointer-events-none"></i>
           </button>
         </div>
       `).join('');
+      elements.historyContainer.querySelectorAll('.history-delete-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          removeHistoryItem(Number(btn.getAttribute('data-history-id')));
+        });
+      });
     }
 
-    window.removeHistoryItem = function(id) {
+    function persistHistory() {
+      try {
+        localStorage.setItem('qr_history', JSON.stringify(state.savedCodes.slice(0, 10)));
+      } catch (err) {}
+    }
+
+    function removeHistoryItem(id) {
+      if (typeof id !== 'number' || !Number.isFinite(id)) return;
       state.savedCodes = state.savedCodes.filter(item => item.id !== id);
-      localStorage.setItem('qr_history', JSON.stringify(state.savedCodes));
+      persistHistory();
       renderHistory();
       showToast('Item removed');
-    };
+    }
 
     // Share functionality
     async function shareQRCode() {
@@ -1248,21 +1581,38 @@
       // Logo File Upload
       elements.logoFile.addEventListener('change', (e) => {
         const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function(event) {
-            const img = new Image();
-            img.onload = function() {
-              state.logoImage = img;
-              elements.removeLogoBtn.classList.remove('hidden');
-              elements.errorCorrection.value = 'H';
-              renderQRCode();
-              showToast('Logo attached successfully!');
-            };
-            img.src = event.target.result;
-          };
-          reader.readAsDataURL(file);
+        if (!file) return;
+        if (!file.type || file.type.indexOf('image/') !== 0) {
+          elements.logoFile.value = '';
+          showToast('Only image files are allowed');
+          return;
         }
+        if (file.size > 5 * 1024 * 1024) {
+          elements.logoFile.value = '';
+          showToast('Logo must be smaller than 5 MB');
+          return;
+        }
+        const reader = new FileReader();
+        reader.onerror = function() {
+          elements.logoFile.value = '';
+          showToast('Could not read logo file');
+        };
+        reader.onload = function(event) {
+          const img = new Image();
+          img.onload = function() {
+            state.logoImage = img;
+            elements.removeLogoBtn.classList.remove('hidden');
+            elements.errorCorrection.value = 'H';
+            renderQRCode();
+            showToast('Logo attached successfully!');
+          };
+          img.onerror = function() {
+            elements.logoFile.value = '';
+            showToast('That file is not a readable image');
+          };
+          img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
       });
 
       elements.removeLogoBtn.addEventListener('click', () => {
@@ -1275,14 +1625,42 @@
 
       // Action Buttons
       elements.downloadBtn.addEventListener('click', () => {
-        const link = document.createElement('a');
-        link.download = `qrcode_${Date.now()}.png`;
-        link.href = elements.canvas.toDataURL('image/png');
-        link.click();
-        showToast('PNG Downloaded!');
+        const size = parseInt(elements.downloadSize.value, 10) || 2048;
+        const origText = elements.downloadBtn.innerHTML;
+        elements.downloadBtn.disabled = true;
+        elements.downloadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Rendering...';
+        exportCanvas(size, (off) => {
+          elements.downloadBtn.disabled = false;
+          elements.downloadBtn.innerHTML = origText;
+          if (!off) { showToast('Could not render QR code'); return; }
+          const link = document.createElement('a');
+          link.download = `qrcode_${size}_${Date.now()}.png`;
+          link.href = off.toDataURL('image/png');
+          link.click();
+          showToast(`PNG ${size}x${size} downloaded!`);
+        });
       });
 
       elements.downloadSvgBtn.addEventListener('click', downloadSVG);
+
+      elements.shortenBtn.addEventListener('click', shortenUrl);
+
+      elements.shortenCopy.addEventListener('click', () => {
+        const val = elements.shortenOutput.textContent;
+        if (!val) return;
+        navigator.clipboard.writeText(val).then(
+          () => showToast('Short URL copied!'),
+          () => showToast('Could not copy')
+        );
+      });
+
+      elements.shortenUse.addEventListener('click', () => {
+        const val = elements.shortenOutput.textContent;
+        if (!val) return;
+        elements.urlInput.value = val;
+        renderQRCode();
+        showToast('Short URL applied to QR');
+      });
 
       elements.copyBtn.addEventListener('click', () => {
         try {
@@ -1306,7 +1684,7 @@
 
       elements.clearHistoryBtn.addEventListener('click', () => {
         state.savedCodes = [];
-        localStorage.removeItem('qr_history');
+        storageRemove('qr_history');
         renderHistory();
         showToast('History cleared');
       });
@@ -1314,6 +1692,9 @@
       elements.resetBtn.addEventListener('click', () => {
         applyPreset('classic');
         elements.urlInput.value = 'https://google.com';
+        elements.shortAlias.value = '';
+        elements.shortenError.classList.add('hidden');
+        elements.shortenResult.classList.add('hidden');
         state.logoImage = null;
         elements.logoFile.value = '';
         elements.removeLogoBtn.classList.add('hidden');
